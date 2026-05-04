@@ -1,0 +1,21 @@
+name: Sync fork on main update
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-fork:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout org repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push main to fork
+        run: |
+          git remote add fork https://x-access-token:${{ secrets.FORK_SYNC_TOKEN }}@github.com/너의깃허브아이디/unity-yonsei-client.git
+          git push fork main:main --force
