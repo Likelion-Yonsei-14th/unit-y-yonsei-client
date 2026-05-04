@@ -1,10 +1,14 @@
 ---
-name: default issue template 
-about: 디폴트 템플릿입니다. 추후에는 feat, fix, chore등 기능별 이슈 템플릿을 로 저장해두어도 좋습니다.
+name: feature issue template 
+about: feat, fix, chore등 기능별 이슈를 생성합니다.
 title: '[Prefix] 제목 작성'
 labels: feat
 assignees: ''
 ---
+
+<!-- 이슈이름은 '[컨벤션] 기능이름' 으로 통일해주세요.
+ ex. [FEAT] searchPublicCourse -->
+ 
 
 ## 🧩 Issue 요약
 - 어떤 작업인지 한 줄로 설명
