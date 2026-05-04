@@ -16,6 +16,8 @@ jobs:
           fetch-depth: 0
 
       - name: Push main to fork
+        env:
+          TOKEN: ${{ secrets.FORK_SYNC_TOKEN }}
         run: |
-          git remote add fork https://x-access-token:${{ secrets.FORK_SYNC_TOKEN }}@github.com/kijoo-l/unit-y-yonsei-client.git
+          git remote add fork https://kijoo-l:${TOKEN}@github.com/kijoo-l/unit-y-yonsei-client.git
           git push fork main:main --force
