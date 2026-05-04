@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+body {
+  font-family: "SUIT Variable", sans-serif;
+  color: #1F242C;
+}
