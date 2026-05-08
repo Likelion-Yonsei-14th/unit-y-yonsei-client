@@ -1,5 +1,5 @@
-import BottomNav from "../../../components/BottomNav";
-import TopBar from "../../../components/TopBar";
+import BottomNav from "../../../components/common/BottomNav";
+import TopBar from "../../../components/common/TopBar";
 
 function ReservationBoothListPage() {
   return (
