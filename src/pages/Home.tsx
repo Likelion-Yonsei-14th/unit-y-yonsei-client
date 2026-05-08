@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import BottomNav from "../components/BottomNav";
 
 function Home() {
@@ -11,6 +12,7 @@ function Home() {
         <div className="mt-[1rem] flex items-center gap-[0.25rem]">
             <img src="/home/banner index-selected.svg" alt="" />
             <img src="/home/banner index-unselected.svg" alt="" />
+            <img src="/home/banner index-unselected.svg" alt="" />
         </div>
       </div>
 
@@ -20,7 +22,7 @@ function Home() {
           <div className="flex justify-between items-center mb-5 mt-5">
             <h2 className="font-bold text-[1.25rem] mt-[0.62rem]">현재 진행 중인 공연</h2>
             <button className="flex items-center gap-[0.62rem] text-[#1E53FF] text-sm">
-                <span>더보기</span>
+                <Link to="/performance">더보기</Link>
                 <img src="/home/addition-arrow.svg" alt="" className="w-[0.25rem] h-[0.5rem]"/>
             </button>
           </div>
@@ -62,7 +64,7 @@ function Home() {
           <div className="flex justify-between items-center mb-5">
             <h2 className="font-bold text-[1.25rem]">인기 부스</h2>
             <button className="flex items-center gap-[0.62rem] text-[#1E53FF] text-sm">
-                <span>더보기</span>
+                <Link to="/booth">더보기</Link>
                 <img src="/home/addition-arrow.svg" alt="" className="w-[0.25rem] h-[0.5rem]"/>
             </button>
           </div>
@@ -181,7 +183,7 @@ function Home() {
 
       </div>
 
-      <BottomNav active="home"/>
+      <BottomNav/>
 
     </div>
   );
