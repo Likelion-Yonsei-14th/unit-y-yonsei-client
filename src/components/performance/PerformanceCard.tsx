@@ -23,7 +23,7 @@ function PerformanceCard({
     >
       <div className= {`flex overflow-hidden rounded-[0.82rem] ${
         isLive
-        ? "bg-[#FFF0F8]"
+        ? "bg-gradient-to-r from-[#F1EEFF] to-[#FFECF6]"
         : "bg-white"
       }`}
       
