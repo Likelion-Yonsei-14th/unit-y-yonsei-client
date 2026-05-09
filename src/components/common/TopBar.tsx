@@ -8,8 +8,6 @@ type TopBarProps = {
 
 function TopBar({
   title, 
-  /* topbar 사용하실 때 <TopBar title="페이지 제목"/> 이런식으로 쓰시면 제목만 표시되고, 
-  페이지 제목 뒤에 showBackButton이나 showShareButton 쓰시면 두 아이콘 다 표시됩니다!! */
   showBackButton = false,
   showShareButton = false,
 }: TopBarProps) {
