@@ -24,7 +24,7 @@ function Home() {
                 <section className="px-4 mb-[2.25rem]">
                 <div className="flex justify-between items-center mb-5 mt-5">
                     <p className="text-heading-2 mt-[0.62rem]">현재 진행 중인 공연</p>
-                    <button className="flex items-center gap-[0.62rem] text-[#1E53FF] text-body-1 mt-[0.62rem]">
+                    <button className="flex items-center gap-[0.62rem] text-[#1E53FF] text-body-1 font-semibold mt-[0.62rem]">
                         <Link to="/performance">더보기</Link>
                         <img src="/home/addition-arrow.svg" alt="" className="w-[0.5rem] h-[0.5rem]"/>
                     </button>
@@ -44,9 +44,9 @@ function Home() {
                 <section className="px-4">
                 <div className="flex justify-between items-center mb-5">
                     <h2 className="text-heading-2">인기 부스</h2>
-                    <button className="flex items-center gap-[0.62rem] text-[#1E53FF] text-body-1">
+                    <button className="flex items-center gap-[0.62rem] text-[#1E53FF] text-body-1 font-semibold">
                         <Link to="/booth">더보기</Link>
-                        <img src="/home/addition-arrow.svg" alt="" className="w-[0.25rem] h-[0.5rem]"/>
+                        <img src="/home/addition-arrow.svg" alt="" className="w-[0.5rem] h-[0.5rem]"/>
                     </button>
                 </div>
 

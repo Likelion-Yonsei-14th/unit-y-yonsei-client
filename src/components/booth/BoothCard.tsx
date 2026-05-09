@@ -46,15 +46,15 @@ function BoothCard({
 
         <div className="flex-1 px-[0.75rem] py-[0.75rem]">
           <div className="flex items-center">
-            <p className="text-body-1">
+            <p className="text-body-1 font-semibold">
               {title}
             </p>
 
-            <span className="ml-[0.75rem] rounded-full bg-[#E9EEFF] px-[0.5rem] py-[0.06rem] text-label text-[#1E53FF]">
+            <span className="ml-[0.75rem] rounded-full bg-[#E9EEFF] px-[0.5rem] py-[0.06rem] text-label font-semibold text-[#1E53FF]">
               {location}
             </span>
 
-            <span className="ml-[0.25rem] rounded-full bg-[#FFF8E0] px-[0.5rem] py-[0.06rem] text-label text-[#FFB020]">
+            <span className="ml-[0.25rem] rounded-full bg-[#FFF8E0] px-[0.5rem] py-[0.06rem] text-label font-semibold text-[#FFB020]">
               {waiting}
             </span>
           </div>
@@ -67,7 +67,7 @@ function BoothCard({
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-[#EDEEF0] px-[0.5rem] py-[0.125rem] text-label text-[#4A5568]"
+                className="rounded-full bg-[#EDEEF0] px-[0.5rem] py-[0.125rem] text-label font-semiboldtext-[#4A5568]"
               >
                 #{tag}
               </span>
