@@ -48,3 +48,12 @@ body {
   font-family: "SUIT Variable", sans-serif;
   color: #1F242C;
 }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

@@ -80,11 +80,13 @@ function BoothCard({
         </div>
 
         {showArrow && (
-          <img
-            src="booth/chevron-right-gray.svg"
-            alt=""
-            className=" mt-[2.75rem] mr-[1rem] w-[0.25rem] h-[0.5rem]"
-          />
+          <div className="mt-[2.75rem] mr-[1rem]">
+            <img 
+              src="booth/chevron-right-gray.svg"
+              alt=""
+              className="w-[0.25rem] h-[0.5rem]"
+            />
+          </div>
         )}
       </div>
     </div>
