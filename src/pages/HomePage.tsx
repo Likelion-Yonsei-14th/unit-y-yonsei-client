@@ -3,10 +3,37 @@ import BottomNav from "../components/common/BottomNav";
 import BoothCard from "../components/booth/BoothCard";
 import PerformanceCard from "../components/performance/PerformanceCard";
 
+const booth = [
+  {
+    title: "호프 한잔",
+    waiting: "대기 2팀",
+    department: "사회학과",
+    boothNumber: "B-07",
+    tags: ["파전", "막걸리"],
+    rank: 1,
+  },
+  {
+    title: "호프 한 잔",
+    waiting: "대기 1팀",
+    department: "컴퓨터과학과",
+    boothNumber: "B-08",
+    tags: ["소주"],
+    rank: 2,
+  },
+  {
+    title: "호프 한잔",
+    waiting: "대기 2팀",
+    department: "사회학과",
+    boothNumber: "B-07",
+    tags: ["파전", "막걸리"],
+    rank: 3,
+  },
+];
+
 function Home() {
   return (
     <div className="flex flex-col h-screen bg-gray-50">
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto scrollbar-hide">
 
             <div className="h-[17.5rem] bg-gradient-to-r from-[#1E53FF] to-[#7052FF] text-white p-6 flex flex-col justify-end">
                 <p className="text-display leading-[1.2]">2026 연세대학교 <br/> 대동제</p>
@@ -51,31 +78,17 @@ function Home() {
                 </div>
 
                 <div className="flex flex-col gap-[0.75rem] mb-[2.25rem]">
-                    <BoothCard
-                        title="호프 한잔"
-                        waiting="대기 2팀"
-                        department="사회학과"
-                        boothNumber="B-07"
-                        tags={["파전", "막걸리"]}
-                        rank={1}
+                    {booth.map((booth) => (
+                        <BoothCard
+                            key={booth.boothNumber}
+                            title={booth.title}
+                            waiting={booth.waiting}
+                            department={booth.department}
+                            boothNumber={booth.boothNumber}
+                            tags={booth.tags}
+                            rank={booth.rank}
                         />
-
-                    <BoothCard
-                        title="호프 한잔"
-                        waiting="대기 2팀"
-                        department="사회학과"
-                        boothNumber="B-07"
-                        tags={["파전", "막걸리"]}
-                        rank={2}
-                        />
-                    <BoothCard
-                        title="호프 한잔"
-                        waiting="대기 2팀"
-                        department="사회학과"
-                        boothNumber="B-07"
-                        tags={["파전", "막걸리"]}
-                        rank={3}
-                        />
+                    ))}
                 </div>
                 </section>
 
