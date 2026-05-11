@@ -4,6 +4,7 @@ import BoothCard from "../../../components/booth/BoothCard";
 import BottomNav from "../../../components/common/BottomNav";
 import TopBar from "../../../components/common/TopBar";
 import FilterChip from "../../../components/common/FilterChip";
+import { useNavigate } from "react-router-dom";
 
 const LOCATIONS = ["전체", "백양로", "한글탑"];
 
@@ -59,6 +60,7 @@ const booths = [
 ];
 
 function AvailableBoothListPage() {
+  const navigate = useNavigate();
   const [selectedLocation, setSelectedLocation] = useState("전체");
 
   const filteredBooths =
@@ -97,6 +99,7 @@ function AvailableBoothListPage() {
               boothNumber={booth.boothNumber}
               tags={booth.tags}
               showArrow
+              onClick={() => navigate(`/booths/${booth.boothNumber}`)}
             />
           ))}
         </div>

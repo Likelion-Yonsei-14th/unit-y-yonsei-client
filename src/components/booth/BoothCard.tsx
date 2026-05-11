@@ -7,6 +7,7 @@ type BoothCardProps = {
   tags: string[];
   rank?: number;
   showArrow?: boolean;
+  onClick?: () => void;
 };
 
 function BoothCard({
@@ -18,11 +19,13 @@ function BoothCard({
   tags,
   rank,
   showArrow = false,
+  onClick,
 }: BoothCardProps) {
   const isTopRank = rank === 1;
 
   return (
     <div
+      onClick={onClick}
       className={`relative rounded-[0.88rem] shadow-[0_1px_4px_rgba(0,0,0,0.08)] ${
         isTopRank
           ? "bg-gradient-to-r from-[#1E53FF] to-[#7052FF] p-[0.0625rem]"
@@ -44,7 +47,10 @@ function BoothCard({
             : "rounded-[0.88rem]"
         }`}
       >
-        <div className="w-[5rem] shrink-0 bg-gradient-to-r from-[#E9EEFF] to-[#F1EEFF]" />
+        <div className="w-[5rem] shrink-0 bg-gradient-to-r from-[#E9EEFF] to-[#F1EEFF]" >
+          <img src="/character/booth-character.svg"
+              className="mt-1" />
+        </div>
 
         <div className="flex-1 px-[0.75rem] py-[0.75rem]">
           <div className="flex items-center">
