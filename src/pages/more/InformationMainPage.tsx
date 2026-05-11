@@ -3,7 +3,7 @@ import { ServiceCard } from '../../components/service/ServiceCard';
 // 💡 팀원분이 만드신 공통 컴포넌트 불러오기 (경로나 이름은 실제 폴더 구조에 맞게 수정해 주세요!)
 import TopBar from '../../components/common/TopBar'; 
 import BottomNav from '../../components/common/BottomNav';
-import chevronRight from '../../assets/Chevron_Right_MD.svg';
+import chevronRight from '../../../public/svg/Chevron_Right_MD.svg'; // 공지사항 꺾쇠 아이콘
 
 
 // 연동 전 임시 Mock Data
@@ -37,37 +37,39 @@ export const InformationMainPage = () => {
             <h2 className="text-heading-2">공지사항</h2>
             <button className="flex items-center text-body-1 text-[#1E53FF]">
               전체보기
-              <svg className="w-[1rem] h-[1rem] ml-[0.125rem]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-[16px] h-[16px] ml-[2px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
           </div>
 
           <div className="flex flex-col">
-            {mockData.noticeList.map((notice, index) => (
+            {mockData.noticeList.map((notice) => (
               <div 
                 key={notice.id} 
-                className= "flex items-center justify-between py-[16px] border-b border-[#EDEEF0]"
+                className= "flex flex-col py-[16px] border-b border-[#EDEEF0]"
               >
-                <div>
-                  <div className="flex items-center gap-[8px] mb-[1px]">
+                <div className="flex items-center justify-between w-full mb-[2px]">
+                  <div className="flex items-center gap-[8px]">
                     {/* isNew가 true일 때만 NEW 뱃지 표시 */}
                     {notice.isNew && (
-                      <span className="px-[0.375rem] py-[0.125rem] text-label text-[#1E53FF] bg-[#E9EEFF] rounded-full">
+                      <span className="px-[6px] py-[2px] text-label text-[#1E53FF] bg-[#E9EEFF] rounded-full">
                         NEW
                       </span>
                     )}
                     <span className="text-heading-3">{notice.title}</span>
                   </div>
-                  <span className="text-caption text-[#4A5568]">{notice.createdAt}</span>
-                </div>
                 
-                {/* 꺾쇠 아이콘 */}
-                <img
-                  src={chevronRight}
-                  alt="이동"
-                  className="w-[24px] h-[24px]"
-                 />
+                  {/* 꺾쇠 아이콘 */}
+                  <img
+                    src={chevronRight}
+                    alt="이동"
+                    className="w-[24px] h-[24px]"
+                  />
+                </div>
+
+                <span className="text-caption text-[#4A5568]">{notice.createdAt}</span>
+                
               </div>
             ))}
           </div>
