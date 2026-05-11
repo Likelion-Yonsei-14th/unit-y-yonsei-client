@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./index.css";
 import Home from "./pages/HomePage";
 import AvailableBoothListPage from "./pages/booth/reservation/AvailableBoothList";
+import PerformanceListPage from "./pages/performance/PerformanceListPage";
+import PerformanceDetailPage from "./pages/performance/PerformanceDetailPage";
 
 function App() {
   return (
@@ -12,7 +14,11 @@ function App() {
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home />} />
             <Route path="/reservation" element={<AvailableBoothListPage />} />
-
+            <Route path="/performance" element={<PerformanceListPage />} />
+            <Route
+              path="/performance/:id"
+              element={<PerformanceDetailPage />}
+            />
           </Routes>
         </BrowserRouter>
       </div>
