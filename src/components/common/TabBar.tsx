@@ -23,8 +23,9 @@ export default function TabBar({ tabs, activeTab, onTabChange }: TabBarProps) {
   className={`
     box-border
     flex
+    flex-1
     h-[56px]
-    w-[130px]
+    w-full
     shrink-0
     items-center
     justify-center
@@ -32,10 +33,7 @@ export default function TabBar({ tabs, activeTab, onTabChange }: TabBarProps) {
     bg-white
     px-[16px]
     py-[12px]
-    text-[15px]
-    font-semibold
-    leading-[150%]
-    tracking-[-0.3px]
+    text-body-1
     ${
       isActive
         ? "border-b-[#1E53FF] text-[#1E53FF]"
