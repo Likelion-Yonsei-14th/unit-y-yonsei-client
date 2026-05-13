@@ -18,7 +18,7 @@ export default function SearchBar({
       />
 
       <input
-        className="flex-1 bg-transparent text-[14px] font-normal leading-[150%] tracking-[-0.28px] outline-none placeholder:text-[#ACB1BA]"
+        className="flex-1 bg-transparent text-body-2 outline-none placeholder:text-[#ACB1BA]"
         type="text"
         value={value}
         placeholder={placeholder}
