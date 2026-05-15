@@ -5,6 +5,8 @@ import BottomNav from "../../../components/common/BottomNav";
 import TopBar from "../../../components/common/TopBar";
 import FilterChip from "../../../components/common/FilterChip";
 import { useNavigate } from "react-router-dom";
+import TabBar from "../../../components/common/TabBar";
+import SearchBar from "../../../components/common/SearchBar";
 
 const LOCATIONS = ["전체", "백양로", "한글탑"];
 
@@ -62,15 +64,38 @@ const booths = [
 function AvailableBoothListPage() {
   const navigate = useNavigate();
   const [selectedLocation, setSelectedLocation] = useState("전체");
+    const [activeTab, setActiveTab] = useState("songdo");
 
   const filteredBooths =
     selectedLocation === "전체"
       ? booths
       : booths.filter((booth) => booth.location === selectedLocation);
 
+   const tabs = [
+    { id: "songdo", label: "5/27 송도" },
+    { id: "sinchon1", label: "5/28 신촌" },
+    { id: "sinchon2", label: "5/29 신촌" },
+    { id: "reservation", label: "내 예약" },
+  ];
+
   return (
     <div className="flex h-screen flex-col bg-white">
       <TopBar title="부스 예약" />
+
+      <div>
+          <TabBar
+            tabs={tabs}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+          />
+
+          <div>
+            {activeTab === "songdo"}
+            {activeTab === "sinchon1"}
+            {activeTab === "sinchon2"}
+            {activeTab === "reservation"}
+          </div>
+        </div>
 
       <div className="h-[4.125rem] bg-white px-[1rem] py-[1.25rem]">
         <p className="text-heading-2">예약 가능 부스</p>
@@ -87,13 +112,16 @@ function AvailableBoothListPage() {
         ))}
       </div>
 
+      <div className="px-[1rem] mb-[1rem]">
+        <SearchBar/>
+      </div>
+
       <main className="flex-1 overflow-y-auto scrollbar-hide px-[1rem]">
         <div className="mb-[1.25rem] flex flex-col gap-[0.75rem]">
           {filteredBooths.map((booth) => (
             <BoothCard
               key={booth.boothNumber}
               title={booth.title}
-              location={booth.location}
               waiting={booth.waiting}
               department={booth.department}
               boothNumber={booth.boothNumber}
