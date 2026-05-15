@@ -47,7 +47,7 @@ function BottomNav() {
   ] as const;
 
   return (
-    <nav className="h-[3.8125rem] border-t border-[#EDEEF0] bg-white flex items-center justify-around">
+    <nav className="h-[5.1875rem] border-t border-[#EDEEF0] bg-white flex items-center justify-around">
       {navItems.map((item) => {
         const isActive = location.pathname === item.path;
 
@@ -64,7 +64,7 @@ function BottomNav() {
             />
 
             <span
-              className={`text-[0.6875rem] font-semibold ${
+              className={`text-label ${
                 isActive ? "text-[#1E53FF]" : "text-[#868D9A]"
               }`}
             >

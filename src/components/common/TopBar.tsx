@@ -8,8 +8,6 @@ type TopBarProps = {
 
 function TopBar({
   title, 
-  /* topbar 사용하실 때 <TopBar title="페이지 제목"/> 이런식으로 쓰시면 제목만 표시되고, 
-  페이지 제목 뒤에 showBackButton이나 showShareButton 쓰시면 두 아이콘 다 표시됩니다!! */
   showBackButton = false,
   showShareButton = false,
 }: TopBarProps) {
@@ -33,13 +31,13 @@ function TopBar({
         {title}
       </p>
 
-      <div className="w-[1.375rem] h-[1.375rem] flex items-center justify-center">
+      <div className="w-[1.5rem] h-[1.5rem] flex items-center justify-center">
         {showShareButton && (
           <button type="button">
             <img
               src="/topBar/share.svg"
               alt="공유하기"
-              className="w-[1.375rem] h-[1.375rem]"
+              className="w-[1.5rem] h-[1.5rem]"
             />
           </button>
         )}
