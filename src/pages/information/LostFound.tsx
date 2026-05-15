@@ -1,8 +1,8 @@
-import { useMemo, useState } from "react";
+﻿import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BottomNav from "../../components/common/BottomNav";
-
-import mascotImage from "../../assets/mascot.png";
+import SearchBar from "../../components/common/SearchBar";
+import TopBar from "../../components/common/TopBar";
 
 type LostItem = {
   id: string;
@@ -11,6 +11,9 @@ type LostItem = {
   timestamp: string;
   isNew?: boolean;
 };
+
+const CARD_IMAGE =
+  "https://www.figma.com/api/mcp/asset/fe6377f3-d1fb-4d0c-bade-0ecf313068be";
 
 const LOST_ITEMS: LostItem[] = [
   {
@@ -42,30 +45,43 @@ const LOST_ITEMS: LostItem[] = [
 
 function LostFoundCard({ item }: { item: LostItem }) {
   return (
-    <article className="rounded-[1rem] border border-[#EDEEF0] bg-white px-[1rem] py-[0.95rem] shadow-[0_1px_4px_rgba(31,36,44,0.08)]">
-      <div className="flex items-start justify-between gap-[0.75rem]">
-        <div className="flex gap-[0.75rem] min-w-0">
-          {/* 에러가 났던 부분! 끝에 ">" 를 추가해서 태그를 잘 닫아주었습니다. */}
-          <div className="flex h-[80px] w-[80px] flex-shrink-0 items-center justify-center rounded-[1rem] bg-[#F4F5F7] shadow-[0_10px_20px_rgba(112,82,255,0.08)]">
-            <img
-              src={mascotImage}
-              alt="분실물 마스코트 아이콘"
-              className="h-[58px] w-[58px] object-contain"
-            />
-          </div>
-
-          <div className="min-w-0">
-            <p className="text-body-1 font-semibold text-[#1F242C] truncate">{item.title}</p>
-            <p className="mt-[0.25rem] text-caption text-[#4A5568] truncate">{item.location}</p>
-            <p className="mt-[0.5rem] text-caption text-[#ACB1BA]">{item.timestamp}</p>
-          </div>
+    <article className="w-full rounded-[14px] border border-[#EDEEF0] bg-white shadow-[0px_1px_4px_0px_rgba(0,0,0,0.08)]">
+      <div className="flex items-center gap-[12px] overflow-hidden rounded-[14px]">
+        <div
+          className="relative h-[96px] w-[80px] shrink-0 rounded-[14px]"
+          style={{
+            backgroundImage:
+              "linear-gradient(129.80557109226518deg, rgb(233, 238, 255) 0%, rgb(241, 238, 255) 100%)",
+          }}
+        >
+          <img
+            src={CARD_IMAGE}
+            alt="분실물 썸네일"
+            className="absolute inset-0 h-full w-full rounded-[14px] object-cover"
+          />
         </div>
 
-        {item.isNew ? (
-          <span className="rounded-full bg-[#E9EEFF] px-[0.65rem] py-[0.14rem] text-label font-semibold text-[#1E53FF]">
-            New
-          </span>
-        ) : null}
+        <div className="flex flex-1 flex-col justify-between p-[12px]">
+          <div className="flex items-start justify-between gap-[8px]">
+            <div className="min-w-0">
+              <p className="text-[15px] font-semibold text-[#0D0F12] truncate">
+                {item.title}
+              </p>
+              <p className="mt-[0.25rem] text-[14px] text-[#4A5568] truncate">
+                {item.location}
+              </p>
+            </div>
+            {item.isNew ? (
+              <span className="rounded-full bg-[#E9EEFF] px-[8px] py-[2px] text-[11px] font-semibold text-[#1E53FF]">
+                New
+              </span>
+            ) : null}
+          </div>
+
+          <div className="mt-[10px] inline-flex rounded-full bg-[#EDEEF0] px-[8px] py-[2px] text-[11px] font-semibold text-[#4A5568]">
+            {item.timestamp}
+          </div>
+        </div>
       </div>
     </article>
   );
@@ -85,78 +101,42 @@ export default function LostFound() {
   );
 
   return (
-    <main className="flex min-h-screen flex-col bg-white">
-      <div className="flex-1 pb-[6.5rem]">
-        <div className="px-[1rem] pt-[1rem] pb-[1.5rem]">
-          <div className="flex items-center justify-between">
-            <button
-              type="button"
-              onClick={() => navigate(-1)}
-              className="flex h-[2.5rem] w-[2.5rem] items-center justify-center rounded-[0.75rem] bg-[#F8F9FB]"
-              aria-label="뒤로가기"
-            >
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M9.5 3.5L5.5 7L9.5 10.5"
-                  stroke="#1F242C"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
+    <div className="w-full min-h-screen bg-white relative">
+      <TopBar title="분실물 안내" showBackButton />
 
-            <h1 className="text-heading-2 font-bold text-[#1F242C]">분실물 안내</h1>
-
-            <div className="h-[2.5rem] w-[2.5rem]" />
-          </div>
-
-          <section className="mt-[1rem] rounded-[1rem] border border-[#EDEEF0] bg-[#FFF8E0] p-[1rem]">
-            <div className="flex flex-col gap-[1rem]">
-              <div className="flex items-center gap-[0.75rem] rounded-[0.75rem] border border-[#EDEEF0] bg-white px-[0.75rem] py-[0.75rem]">
-                <span className="flex h-[1.75rem] w-[1.75rem] items-center justify-center rounded-full bg-[#FFE7F1]">
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.72 19.72 0 0 1-8.63-3.07 19.43 19.43 0 0 1-6-6A19.72 19.72 0 0 1 2.08 4.18 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72 12.22 12.22 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.22 12.22 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"
-                      fill="#E6396E"
-                    />
-                  </svg>
-                </span>
-                <p className="text-body-1 font-semibold text-[#1F242C]">
-                  총학생회 분실물 센터
-                </p>
+      <div className="pb-[5.1875rem]">
+        <div className="px-[1rem] pt-[1rem] pb-[1rem] space-y-[1rem]">
+          <section className="rounded-[14px] border border-[#FFB020] bg-[#FFF8E0] p-[1.5rem] shadow-[0px_1px_4px_0px_rgba(0,0,0,0.08)]">
+            <div className="flex items-center gap-[0.75rem]">
+              <div className="flex h-[2rem] w-[2rem] items-center justify-center rounded-[0.75rem] bg-[#FFF3D3]">
+                <span className="text-[1rem]">📞</span>
               </div>
-
-              <div className="rounded-[0.75rem] bg-white px-[1rem] py-[0.95rem] text-body-1 font-semibold text-[#1F242C] border border-[#EDEEF0]">
-                010-0000-0000
-              </div>
-
-              <p className="text-caption leading-[1.5] text-[#4A5568]">
-                물건을 잃어버리셨나요? 위 번호로 연락주시면 분실물 등록 여부를 확인해드립니다.
+              <p className="text-[17px] font-semibold text-[#1F242C]">
+                총학생회 분실물 센터
               </p>
             </div>
+
+            <div className="mt-[1rem] rounded-[8px] bg-[#EDEEF0] px-[1.25rem] py-[0.875rem] text-[17px] font-semibold text-[#0D0F12]">
+              010-0000-0000
+            </div>
+
+            <p className="mt-[1rem] text-[14px] leading-[1.5] text-[#4A5568]">
+              물건을 잃어버리셨나요? 위 번호로 연락주시면 분실물 등록 여부를 확인해드립니다.
+            </p>
           </section>
 
-          <div className="mt-[1rem]">
-            <SearchBar value={searchTerm} onChange={setSearchTerm} placeholder="분실물 검색" />
-          </div>
+          <SearchBar
+            value={searchTerm}
+            onChange={setSearchTerm}
+            placeholder="분실물 검색"
+          />
 
-          <div className="mt-[1.25rem]">
-            <p className="text-body-1 font-semibold text-[#1F242C]">습득 분실물 목록</p>
+          <div className="space-y-[0.75rem]">
+            <p className="text-[12px] font-medium text-[#4A5568]">
+              습득 분실물 목록
+            </p>
 
-            <div className="mt-[0.75rem] space-y-[0.75rem]">
+            <div className="space-y-[0.75rem]">
               {filteredItems.map((item) => (
                 <LostFoundCard key={item.id} item={item} />
               ))}
@@ -166,6 +146,6 @@ export default function LostFound() {
       </div>
 
       <BottomNav />
-    </main>
+    </div>
   );
 }
