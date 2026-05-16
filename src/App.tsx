@@ -3,6 +3,9 @@ import "./index.css";
 import Home from "./pages/HomePage";
 import AvailableBoothListPage from "./pages/booth/reservation/AvailableBoothList";
 import BoothReservationDetailPage from "./pages/booth/reservation/BoothReservationDetailPage";
+import { InformationMainPage } from './pages/more/InformationMainPage';
+
+
 
 function App() {
   return (
@@ -14,6 +17,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/reservation" element={<AvailableBoothListPage />} />
             <Route path="/booths/:boothNumber" element={<BoothReservationDetailPage />} />
+            <Route path="/more" element={<InformationMainPage />} />
 
           </Routes>
         </BrowserRouter>
