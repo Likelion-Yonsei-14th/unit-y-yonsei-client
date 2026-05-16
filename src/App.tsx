@@ -3,6 +3,10 @@ import "./index.css";
 import Home from "./pages/HomePage";
 import AvailableBoothListPage from "./pages/booth/reservation/AvailableBoothList";
 import { InformationMainPage } from './pages/more/InformationMainPage';
+import ReviewPage from './pages/more/ReviewPage';
+import ReviewSubmitPage from './pages/more/ReviewSubmitPage';
+import ReviewDonePage from './pages/more/ReviewDonePage';
+import MakerPage from './pages/more/MakerPage';
 
 
 
@@ -16,7 +20,10 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/reservation" element={<AvailableBoothListPage />} />
             <Route path="/more" element={<InformationMainPage />} />
-
+            <Route path="/more/review" element={<ReviewPage />} />
+            <Route path="/more/review-submit" element={<ReviewSubmitPage />} />
+            <Route path="/more/review-done" element={<ReviewDonePage />} />
+            <Route path="/more/makers" element={<MakerPage />} />
           </Routes>
         </BrowserRouter>
       </div>
