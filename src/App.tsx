@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./index.css";
 import Home from "./pages/HomePage";
 import AvailableBoothListPage from "./pages/booth/reservation/AvailableBoothList";
-import { InformationMainPage } from './pages/more/InformationMainPage';
-
-
+import { InformationMainPage } from "./pages/more/InformationMainPage";
+import PerformanceListPage from "./pages/performance/PerformanceListPage";
+import PerformanceDetailPage from "./pages/performance/PerformanceDetailPage";
 
 function App() {
   return (
@@ -17,6 +17,11 @@ function App() {
             <Route path="/reservation" element={<AvailableBoothListPage />} />
             <Route path="/more" element={<InformationMainPage />} />
 
+            <Route path="/performance" element={<PerformanceListPage />} />
+            <Route
+              path="/performance/:id"
+              element={<PerformanceDetailPage />}
+            />
           </Routes>
         </BrowserRouter>
       </div>
