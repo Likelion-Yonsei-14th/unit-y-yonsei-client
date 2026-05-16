@@ -3,6 +3,8 @@ import "./index.css";
 import Home from "./pages/HomePage";
 import AvailableBoothListPage from "./pages/booth/reservation/AvailableBoothList";
 import { InformationMainPage } from './pages/more/InformationMainPage';
+import NoticePage from './pages/more/NoticePage';
+import NoticeDetailPage from './pages/more/NoticeDetailPage';
 
 
 
@@ -16,6 +18,8 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/reservation" element={<AvailableBoothListPage />} />
             <Route path="/more" element={<InformationMainPage />} />
+            <Route path="/more/notice" element={<NoticePage />} />
+            <Route path="/more/notice/:id" element={<NoticeDetailPage />} />
 
           </Routes>
         </BrowserRouter>
