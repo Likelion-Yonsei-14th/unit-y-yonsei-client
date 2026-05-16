@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./index.css";
 import Home from "./pages/HomePage";
 import AvailableBoothListPage from "./pages/booth/reservation/AvailableBoothList";
-import BoothDetailPage from "./pages/booth/BoothDetailPage";
+import BoothReservationDetailPage from "./pages/booth/reservation/BoothReservationDetailPage";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home />} />
             <Route path="/reservation" element={<AvailableBoothListPage />} />
-            <Route path="/booths/:boothNumber" element={<BoothDetailPage />} />
+            <Route path="/booths/:boothNumber" element={<BoothReservationDetailPage />} />
 
           </Routes>
         </BrowserRouter>

@@ -1,7 +1,10 @@
+export type WaitingStatus =  "대기중" | "예약 취소" | "입장 완료";
+
 type BoothCardProps = {
   title: string;
   location?: string;
-  waiting: string;
+  waiting?: string;
+  waitingStatus?: WaitingStatus;
   department: string;
   boothNumber: string;
   tags: string[];
@@ -14,6 +17,7 @@ function BoothCard({
   title,
   location,
   waiting,
+  waitingStatus,
   department,
   boothNumber,
   tags,
@@ -22,6 +26,12 @@ function BoothCard({
   onClick,
 }: BoothCardProps) {
   const isTopRank = rank === 1;
+
+  const waitingStatusStyle = {
+    "대기중": "bg-[#FFF8E0] text-[#FFB020]",
+    "예약 취소": "bg-[#EDEEF0] text-[#4A5568]",
+    "입장 완료": "bg-[#E0FFF3] text-[#00C070]",
+  };
 
   return (
     <div
@@ -64,9 +74,17 @@ function BoothCard({
               </span>
             )}
 
-            <span className="ml-[0.25rem] rounded-full bg-[#FFF8E0] px-[0.5rem] py-[0.06rem] text-label text-[#FFB020]">
-              {waiting}
-            </span>
+            {waiting && (
+              <span className="ml-[0.25rem] rounded-full bg-[#FFF8E0] px-[0.5rem] py-[0.06rem] text-label text-[#FFB020]">
+                {waiting}
+              </span>
+            )}
+
+            {waitingStatus && (
+              <span className={`ml-[0.25rem] rounded-full px-[0.5rem] py-[0.06rem] text-label ${waitingStatusStyle[waitingStatus]}`}>
+                {waitingStatus}
+              </span>
+            )}
           </div>
 
           <p className="mt-[0.25rem] text-caption text-[#4A5568]">
