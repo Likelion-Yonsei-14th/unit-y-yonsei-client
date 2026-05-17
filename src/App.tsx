@@ -20,8 +20,8 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/booth" element={<BoothList />} />
             <Route path="/reservation" element={<AvailableBoothListPage />} />
-            <Route path="/lost-found" element={<LostFound />} />
-            <Route path="/barrier-free" element={<BarrierFree />} />
+            <Route path="/more/lost-found" element={<LostFound />} />
+            <Route path="/more/barrier-free" element={<BarrierFree />} />
             <Route path="/booths/:boothNumber" element={<BoothReservationDetailPage />} />
             <Route path="/more" element={<InformationMainPage />} />
           </Routes>
