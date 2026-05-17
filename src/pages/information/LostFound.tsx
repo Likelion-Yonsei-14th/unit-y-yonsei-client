@@ -45,40 +45,47 @@ const LOST_ITEMS: LostItem[] = [
 
 function LostFoundCard({ item }: { item: LostItem }) {
   return (
-    <article className="w-full rounded-[14px] border border-[#EDEEF0] bg-white shadow-[0px_1px_4px_0px_rgba(0,0,0,0.08)]">
-      <div className="flex items-center gap-[12px] overflow-hidden rounded-[14px]">
+    <article className="w-full rounded-[14px] border border-[#EDEEF0] bg-white shadow-[0px_1px_4px_0px_rgba(0,0,0,0.08)] overflow-clip">
+      <div className="flex items-center">
+        
         <div
-          className="relative h-[96px] w-[80px] shrink-0 rounded-[14px]"
+          className="relative h-[96px] w-[80px] shrink-0 rounded-[14px] overflow-hidden flex items-center justify-center"
           style={{
-            backgroundImage:
-              "linear-gradient(129.80557109226518deg, rgb(233, 238, 255) 0%, rgb(241, 238, 255) 100%)",
+            background: 'linear-gradient(129.80557109226518deg, rgb(233, 238, 255) 0%, rgb(241, 238, 255) 100%)',
           }}
         >
           <img
             src={CARD_IMAGE}
-            alt="분실물 썸네일"
-            className="absolute inset-0 h-full w-full rounded-[14px] object-cover"
+            alt="item"
+            className="max-w-none translate-y-[6px]"
+            style={{
+              width: '136%',
+              height: 'auto', 
+              objectFit: 'contain',
+            }}
+            loading="lazy"
           />
         </div>
+        {/* ------------------------- */}
 
-        <div className="flex flex-1 flex-col justify-between p-[12px]">
-          <div className="flex items-start justify-between gap-[8px]">
+        <div className="flex flex-1 flex-col gap-[8px] h-full items-start justify-center p-[12px]">
+          <div className="flex items-center justify-between w-full h-[46px]">
             <div className="min-w-0">
-              <p className="text-[15px] font-semibold text-[#0D0F12] truncate">
+              <p className="typography-heading-3 text-[#0D0F12] truncate">
                 {item.title}
               </p>
-              <p className="mt-[0.25rem] text-[14px] text-[#4A5568] truncate">
+              <p className="mt-[0.25rem] typography-body-2 text-[#4A5568] truncate">
                 {item.location}
               </p>
             </div>
             {item.isNew ? (
-              <span className="rounded-full bg-[#E9EEFF] px-[8px] py-[2px] text-[11px] font-semibold text-[#1E53FF]">
+              <span className="rounded-full bg-[#E9EEFF] px-[8px] py-px typography-label text-[#1E53FF]">
                 New
               </span>
             ) : null}
           </div>
 
-          <div className="mt-[10px] inline-flex rounded-full bg-[#EDEEF0] px-[8px] py-[2px] text-[11px] font-semibold text-[#4A5568]">
+          <div className="rounded-full bg-[#EDEEF0] px-[8px] py-px typography-label text-[#4A5568]">
             {item.timestamp}
           </div>
         </div>
@@ -111,16 +118,16 @@ export default function LostFound() {
               <div className="flex h-[2rem] w-[2rem] items-center justify-center rounded-[0.75rem] bg-[#FFF3D3]">
                 <span className="text-[1rem]">📞</span>
               </div>
-              <p className="text-[17px] font-semibold text-[#1F242C]">
+              <p className="typography-heading-3 text-[#1F242C]">
                 총학생회 분실물 센터
               </p>
             </div>
 
-            <div className="mt-[1rem] rounded-[8px] bg-[#EDEEF0] px-[1.25rem] py-[0.875rem] text-[17px] font-semibold text-[#0D0F12]">
+            <div className="mt-[1rem] rounded-[8px] bg-[#EDEEF0] px-[1.25rem] py-[0.875rem] typography-heading-3 text-[#0D0F12]">
               010-0000-0000
             </div>
 
-            <p className="mt-[1rem] text-[14px] leading-[1.5] text-[#4A5568]">
+            <p className="mt-[1rem] typography-body-2 text-[#4A5568]">
               물건을 잃어버리셨나요? 위 번호로 연락주시면 분실물 등록 여부를 확인해드립니다.
             </p>
           </section>
@@ -131,12 +138,12 @@ export default function LostFound() {
             placeholder="분실물 검색"
           />
 
-          <div className="space-y-[0.75rem]">
-            <p className="text-[12px] font-medium text-[#4A5568]">
+          <div>
+            <p className="typography-caption font-medium text-[#4A5568] px-[1rem] py-[0.625rem]">
               습득 분실물 목록
             </p>
 
-            <div className="space-y-[0.75rem]">
+            <div className="space-y-[0.75rem] px-[1rem]">
               {filteredItems.map((item) => (
                 <LostFoundCard key={item.id} item={item} />
               ))}

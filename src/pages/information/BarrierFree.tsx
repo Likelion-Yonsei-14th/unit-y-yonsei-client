@@ -39,7 +39,7 @@ export default function BarrierFree() {
             <div className="flex gap-[0.625rem]">
               <div className="flex-shrink-0 text-[15px] leading-[1.5]">♿</div>
               <div className="flex-1">
-                <p className="text-[15px] font-semibold text-[#0D0F12] leading-[1.5] break-words">
+                <p className="typography-body-1 text-[#0D0F12] break-words">
                   모든 분들이 편안하게 대동제를 즐길 수 있도록 배리어프리 구역과 이동 동선을
                   안내드립니다.
                 </p>
@@ -49,16 +49,16 @@ export default function BarrierFree() {
 
           {/* Map Section */}
           <div className="pt-[0.5rem]">
-            <p className="text-[12px] text-[#4A5568] px-[1rem] py-[0.625rem]">
+            <p className="typography-caption text-[#4A5568] px-[1rem] py-[0.625rem]">
               안내 지도
             </p>
-            <div className="bg-white border border-[#EDEEF0] rounded-[0.875rem] overflow-hidden px-[1rem] py-[1rem]">
-                <div className="bg-[#E8E8E8] rounded-[0.5rem] aspect-video flex items-center justify-center relative">
+            <div className="bg-white border border-[#EDEEF0] rounded-[0.875rem] overflow-hidden">
+                <div className="bg-[#E8E8E8] aspect-video flex items-center justify-center relative">
                   
                                     <img
                     src={mapImage}
                     alt="배리어프리 안내 지도"
-                    className="w-full h-full object-cover rounded-[0.5rem] cursor-zoom-in"
+                    className="w-full h-full object-cover cursor-zoom-in"
                     onClick={() => setIsOpen(true)}
                   />
 
@@ -76,33 +76,33 @@ export default function BarrierFree() {
                     </svg>
                   </button>
                 </div>
-              <div className="flex items-center gap-[0.375rem] mt-[1rem]">
+              <div className="flex items-center gap-[0.375rem] px-[1rem] py-[0.875rem]">
                 <div className="bg-[#FF5A36] w-[1.5rem] h-[0.5rem] rounded-full" />
-                <p className="text-[12px] text-[#0D0F12] font-regular">경사로</p>
+                <p className="typography-caption text-[#0D0F12] font-regular">경사로</p>
               </div>
             </div>
           </div>
 
           {/* Facilities Section */}
           <div className="pt-[0.5rem]">
-            <p className="text-[12px] text-[#4A5568] px-[1rem] py-[0.625rem]">
+            <p className="typography-caption text-[#4A5568] px-[1rem] py-[0.625rem]">
               배리어프리 시설
             </p>
-            <div className="bg-white space-y-0 border border-[#EDEEF0] rounded-[0.875rem] overflow-hidden">
+            <div className="bg-white space-y-0">
               {facilities.map((facility, index) => (
                 <div
                   key={index}
-                  className={`px-[1rem] py-[0.625rem] flex flex-col gap-[0.125rem] ${
+                  className={`px-[1rem] py-[0.875rem] flex flex-col gap-[0.25rem] ${
                     index < facilities.length - 1 ? "border-b border-[#EDEEF0]" : ""
                   }`}
                 >
                   <div className="flex items-center gap-[0.25rem]">
                     <span className="text-[1.0625rem]">{facility.icon}</span>
-                    <p className="text-[17px] font-semibold text-[#0D0F12] leading-[1.3]">
+                    <p className="typography-heading-3 text-[#0D0F12]">
                       {facility.title}
                     </p>
                   </div>
-                  <p className="text-[14px] text-[#4A5568] font-regular leading-[1.5]">
+                  <p className="typography-body-2 text-[#4A5568] font-regular">
                     {facility.description}
                   </p>
                 </div>
