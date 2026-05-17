@@ -4,41 +4,26 @@ type SearchBarProps = {
   placeholder?: string;
 };
 
-function SearchBar({ value, onChange, placeholder }: SearchBarProps) {
+export default function SearchBar({
+  value,
+  onChange,
+  placeholder = "부스명, 단체명, 메뉴명 검색",
+}: SearchBarProps) {
   return (
-    <label className="flex items-center gap-[0.75rem] rounded-[0.75rem] border border-[#EDEEF0] bg-[#F8F9FB] px-[1rem] py-[0.875rem]">
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+    <div className="flex h-[45px] w-full items-center gap-[10px] rounded-[8px] bg-[#EDEEF0] px-[20px] py-[12px]">
+      <img 
+        src="/search.svg"
+        alt="Search"
         className="shrink-0"
-      >
-        <path
-          d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"
-          stroke="#868D9A"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="m16.5 16.5 4 4"
-          stroke="#868D9A"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+      />
 
       <input
+        className="flex-1 bg-transparent text-body-2 outline-none placeholder:text-[#ACB1BA]"
+        type="text"
         value={value}
-        onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
-        className="w-full bg-transparent text-body-1 text-[#1F242C] placeholder:text-[#ACB1BA] outline-none"
+        onChange={(e) => onChange(e.target.value)}
       />
-    </label>
+    </div>
   );
 }
-
-export default SearchBar;
