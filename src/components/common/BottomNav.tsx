@@ -27,7 +27,7 @@ function BottomNav() {
       key: "reservation",
       label: "예약",
       path: "/reservation",
-      activePaths: ["/reservation", "/reservation/:boothId"],
+      activePaths: ["/reservation", "/reservation/:boothId", "/reservation-complete"],
       activeIcon: "/bottomNav/reservation-active.svg",
       inactiveIcon: "/bottomNav/reservation-inactive.svg",
       size: "w-[2rem] h-[1.5rem]",

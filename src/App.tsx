@@ -6,6 +6,7 @@ import AvailableBoothListPage from "./pages/booth/reservation/AvailableBoothList
 import BoothReservationDetailPage from "./pages/booth/reservation/BoothReservationDetailPage";
 import { InformationMainPage } from './pages/more/InformationMainPage';
 import WaitingFormPage from "./pages/booth/reservation/ReservationFormPage";
+import ReservationCompletePage from "./pages/booth/reservation/ReservationCompletePage";
 
 
 
@@ -22,6 +23,7 @@ function App() {
             <Route path="/booths/:boothNumber" element={<BoothReservationDetailPage />} />
             <Route path="/more" element={<InformationMainPage />} />
             <Route path="/reservation/:boothNumber" element={<WaitingFormPage />} />
+            <Route path="/reservation-complete" element={<ReservationCompletePage />} />
           </Routes>
         </BrowserRouter>
       </div>

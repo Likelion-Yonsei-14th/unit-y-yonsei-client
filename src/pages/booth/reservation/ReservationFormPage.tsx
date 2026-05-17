@@ -242,6 +242,7 @@ import BottomNav from "../../../components/common/BottomNav";
                 bg-[#1E53FF]
                 text-heading-3
                 text-white
+                mb-[36px]
               "
             >
               예약 신청하기
