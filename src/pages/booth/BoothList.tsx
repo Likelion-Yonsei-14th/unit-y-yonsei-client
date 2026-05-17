@@ -5,6 +5,7 @@ import SearchBar from "../../components/common/SearchBar";
 import FilterChip from "../../components/common/FilterChip";
 import BoothCard from "../../components/booth/BoothCard";
 import BottomNav from "../../components/common/BottomNav";
+import { useNavigate } from "react-router-dom";
 
 const DATE_TABS = [
   { id: "527", label: "5/27 송도" },
@@ -65,6 +66,8 @@ function BoothList() {
   const [activeFilter, setActiveFilter] = useState("all");
   const [activeLocation, setActiveLocation] = useState("all");
   const [isMapOpen, setIsMapOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   function handleTabChange(tab: string) {
     setActiveTab(tab);
@@ -160,6 +163,7 @@ function BoothList() {
               boothNumber={booth.boothNumber}
               tags={booth.tags}
               location={booth.location}
+              onClick={() => navigate(`/booths/${booth.boothNumber}`)}
             />
           ))}
         </div>
