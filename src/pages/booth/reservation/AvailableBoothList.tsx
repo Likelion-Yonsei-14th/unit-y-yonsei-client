@@ -172,7 +172,7 @@ function AvailableBoothListPage() {
               boothNumber={booth.boothNumber}
               tags={booth.tags}
               showArrow
-              onClick={() => navigate(`/booths/${booth.boothNumber}`)}
+              onClick={() => navigate(`/reservation/${booth.boothNumber}`)}
             />
           ))}
 
