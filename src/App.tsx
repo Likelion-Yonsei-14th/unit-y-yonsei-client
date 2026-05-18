@@ -7,7 +7,6 @@ import { InformationMainPage } from "./pages/more/InformationMainPage";
 import PerformanceListPage from "./pages/performance/PerformanceListPage";
 import PerformanceDetailPage from "./pages/performance/PerformanceDetailPage";
 import BoothReservationDetailPage from "./pages/booth/reservation/BoothReservationDetailPage";
-import { InformationMainPage } from "./pages/more/InformationMainPage";
 
 function App() {
   return (
