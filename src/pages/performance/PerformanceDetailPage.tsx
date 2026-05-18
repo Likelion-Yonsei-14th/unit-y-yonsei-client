@@ -79,7 +79,7 @@ function PerformanceDetailPage() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-2 text-slate-600">
+            <div className="flex flex-col gap-2">
               <div className="text-heading-3 text-[#4A5568]">
                 {perf.location}
               </div>
@@ -120,9 +120,9 @@ function PerformanceDetailPage() {
           <div className="flex flex-col justify-start items-start gap-1.5">
             {perf.setlist.map((song, index) => {
               const badgeStyles = [
-                { bg: "bg-indigo-50", text: "text-blue-600" },
-                { bg: "bg-indigo-50", text: "text-indigo-500" },
-                { bg: "bg-rose-50", text: "text-pink-500" },
+                { bg: "bg-[#E9EEFF]", text: "text-[#1E53FF]" },
+                { bg: "bg-[#F1EEFF]", text: "text-[#7052FF]" },
+                { bg: "bg-[#FFECF6]", text: "text-[#FF40A5]" },
               ];
               const { bg, text } = badgeStyles[index % 3];
 
@@ -214,7 +214,7 @@ function PerformanceDetailPage() {
                             }}
                             className={`flex self-stretch cursor-pointer items-start justify-start gap-4 px-3.5 py-3 hover:bg-indigo-50 ${index === 0 ? "rounded-t-[10px]" : ""} ${index === perf.setlist.length - 1 ? "rounded-b-[10px]" : ""}`}
                           >
-                            <div className="text-sm font-normal leading-5">
+                            <div className="text-body-2 leading-5">
                               {song.title}
                             </div>
                           </div>

@@ -95,7 +95,7 @@ function PerformanceListPage() {
               ${
                 activeLocation === tab.id
                   ? "bg-[#1E53FF] text-white"
-                  : "bg-gray-100 text-gray-500"
+                  : "bg-[#EDEEF0] text-[#4A5568]"
               }`}
                 >
                   {tab.label}
