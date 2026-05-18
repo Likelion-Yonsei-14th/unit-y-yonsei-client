@@ -17,7 +17,7 @@ function TopBar() {
           className="w-full h-full object-contain"
         />
       </Link>
-      <div className="text-xl font-bold font-['SUIT_Variable'] leading-6 text-[#1F242C]">
+      <div className="text-heading-2 leading-6 text-[#1F242C]">
         공연 상세
       </div>
     </div>
@@ -54,7 +54,7 @@ function PerformanceDetailPage() {
           >
             <div className="w-full px-6 py-5 bg-indigo-50 rounded-2xl shadow-[0px_1px_4px_0px_rgba(0,0,0,0.08)] outline outline-1 outline-offset-[-1px] outline-indigo-500 flex justify-start items-start gap-3">
               <span className="leading-6">💌</span>
-              <p className="text-body-1 text-gray-800">
+              <p className="text-body-1 text-[#1F242C]">
                 보내주신 소중한 응원이 공연팀에게 잘 전달되었습니다!
               </p>
             </div>
@@ -71,7 +71,7 @@ function PerformanceDetailPage() {
                 {perf.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2.5 py-1 bg-rose-50 rounded-full text-pink-500 text-body-2"
+                    className="px-2.5 py-1 bg-[#FFECF6] rounded-full text-[#FF40A5] text-body-2"
                   >
                     #{tag}
                   </span>
@@ -129,14 +129,14 @@ function PerformanceDetailPage() {
               return (
                 <div
                   key={index}
-                  className="w-96 px-4 py-3 bg-white rounded-2xl outline outline-1 outline-offset-[-1px] outline-gray-100 inline-flex justify-start items-center gap-3.5 overflow-hidden"
+                  className="w-96 px-4 py-3 bg-white rounded-2xl outline outline-1 outline-offset-[-1px] outline-[#EDEEF0] inline-flex justify-start items-center gap-3.5 overflow-hidden"
                 >
                   {/* 번호 배지 */}
                   <div
                     className={`size-4 ${bg} rounded-[999px] flex justify-center items-center gap-2.5`}
                   >
                     <div
-                      className={`text-center justify-start ${text} text-xs font-semibold leading-4`}
+                      className={`text-center justify-start ${text} text-label leading-4`}
                     >
                       {index + 1}
                     </div>
@@ -230,7 +230,7 @@ function PerformanceDetailPage() {
                 <div className="self-stretch text-body-1">응원 메시지</div>
                 <div className="inline-flex self-stretch items-start justify-start gap-2 rounded-lg bg-gray-100 px-5 py-3.5">
                   <textarea
-                    className="flex-1 bg-transparent text-body-2 placeholder:text-gray-400 focus:outline-none resize-none"
+                    className="flex-1 bg-transparent text-body-2 placeholder:text-[#ACB1BA] focus:outline-none resize-none"
                     placeholder="공연자에게 따뜻한 응원 메시지를 남겨주세요 (욕설·비방 등 부적절한 내용은 삭제 조치될 수 있습니다)"
                     rows={3}
                   />
