@@ -29,6 +29,7 @@ function PerformanceDetailPage() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSong, setSelectedSong] = useState("");
   const [isSent, setIsSent] = useState(false);
+  const [isReviewOpen, setIsReviewOpen] = useState(false); // 응원 섹션 오픈 상태 추가
 
   const handleSend = () => {
     setIsSent(true);
@@ -108,6 +109,7 @@ function PerformanceDetailPage() {
             </p>
           </div>
         </div>
+        <div className="w-full h-[12px] bg-[var(---secondary,#EDEEF0)]"></div>
         <div
           data-속성-1="베리언트2"
           className="w-96 px-4 py-5 bg-white inline-flex flex-col justify-start items-start gap-3.5"
@@ -156,88 +158,96 @@ function PerformanceDetailPage() {
 
         {/* 응원 섹션 컨테이너 */}
         <div className="inline-flex w-full flex-col items-center justify-start gap-4 bg-white px-4">
-          {/* 리뷰 카드 */}
-          <div className="flex w-96 overflow-hidden flex-col items-start justify-center gap-4 rounded-2xl bg-white p-6 shadow-[0px_1px_4px_0px_rgba(0,0,0,0.08)] outline outline-1 outline-offset-[-1px] outline-gray-100">
-            <div className="flex self-stretch flex-col items-start justify-start gap-3">
-              <div className="flex w-56 flex-col items-start justify-start gap-2">
-                <div className="line-clamp-1 text-heading-2">
-                  💕 공연팀에게 응원 보내기
-                </div>
-              </div>
-            </div>
-
-            {/* 곡 선택 드롭다운 영역 */}
-            <div className="flex self-stretch flex-col items-start justify-start gap-2">
-              <div className="self-stretch text-body-1">가장 좋았던 곡</div>
-              <div className="relative inline-flex self-stretch items-center justify-start gap-4 rounded-[10px] bg-white">
-                <div className="flex flex-1 flex-col items-start justify-start gap-0.5">
-                  {/* 셀렉트 박스 상단 (클릭 시 isOpen 상태 변경) */}
-                  <div
-                    onClick={() => setIsOpen(!isOpen)}
-                    className={`inline-flex self-stretch cursor-pointer items-center justify-between rounded-[10px] bg-white px-3.5 py-3 outline outline-1 outline-offset-[-1px] ${isOpen ? "outline-blue-600" : "outline-gray-100"}`}
-                  >
-                    <div className="text-body-2 ">
-                      {selectedSong || "곡명 선택"}
-                    </div>
-                    <div
-                      className={`size-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
-                    >
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                      >
-                        <path
-                          d="M4 6L8 10L12 6"
-                          stroke="#A1A1AA"
-                          strokeWidth="1.2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
+          {/* 리뷰 카드 (isReviewOpen이 true일 때만 렌더링) */}
+          {isReviewOpen && (
+            <div className="flex w-96 overflow-hidden flex-col items-start justify-center gap-4 rounded-2xl bg-white p-6 shadow-[0px_1px_4px_0px_rgba(0,0,0,0.08)] outline outline-1 outline-offset-[-1px] outline-gray-100">
+              <div className="flex self-stretch flex-col items-start justify-start gap-3">
+                <div className="flex w-56 flex-col items-start justify-start gap-2">
+                  <div className="line-clamp-1 text-heading-3">
+                    💕 공연팀에게 응원 보내기
                   </div>
+                </div>
+              </div>
 
-                  {/* 드롭다운 리스트 (isOpen일 때만 곡명들 노출) */}
-                  {isOpen && (
-                    <div className="absolute top-[110%] z-10 flex self-stretch w-full flex-col items-center justify-start overflow-hidden rounded-[10px] bg-white outline outline-1 outline-offset-[-1px] outline-blue-600 shadow-lg">
-                      {perf.setlist.map((song, index) => (
-                        <div
-                          key={index}
-                          onClick={() => {
-                            setSelectedSong(song.title);
-                            setIsOpen(false);
-                          }}
-                          className={`flex self-stretch cursor-pointer items-start justify-start gap-4 px-3.5 py-3 hover:bg-indigo-50 ${index === 0 ? "rounded-t-[10px]" : ""} ${index === perf.setlist.length - 1 ? "rounded-b-[10px]" : ""}`}
+              {/* 곡 선택 드롭다운 영역 */}
+              <div className="flex self-stretch flex-col items-start justify-start gap-2">
+                <div className="self-stretch text-body-1">가장 좋았던 곡</div>
+                <div className="relative inline-flex self-stretch items-center justify-start gap-4 rounded-[10px] bg-white">
+                  <div className="flex flex-1 flex-col items-start justify-start gap-0.5">
+                    {/* 셀렉트 박스 상단 (클릭 시 isOpen 상태 변경) */}
+                    <div
+                      onClick={() => setIsOpen(!isOpen)}
+                      className={`inline-flex self-stretch cursor-pointer items-center justify-between rounded-[10px] bg-white px-3.5 py-3 outline outline-1 outline-offset-[-1px] ${isOpen ? "outline-blue-600" : "outline-gray-100"}`}
+                    >
+                      <div className="text-body-2 ">
+                        {selectedSong || "곡명 선택"}
+                      </div>
+                      <div
+                        className={`size-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                      >
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
                         >
-                          <div className="text-sm font-normal leading-5">
-                            {song.title}
-                          </div>
-                        </div>
-                      ))}
+                          <path
+                            d="M4 6L8 10L12 6"
+                            stroke="#A1A1AA"
+                            strokeWidth="1.2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
                     </div>
-                  )}
+
+                    {/* 드롭다운 리스트 (isOpen일 때만 곡명들 노출) */}
+                    {isOpen && (
+                      <div className="absolute top-[110%] z-10 flex self-stretch w-full flex-col items-center justify-start overflow-hidden rounded-[10px] bg-white outline outline-1 outline-offset-[-1px] outline-blue-600 shadow-lg">
+                        {perf.setlist.map((song, index) => (
+                          <div
+                            key={index}
+                            onClick={() => {
+                              setSelectedSong(song.title);
+                              setIsOpen(false);
+                            }}
+                            className={`flex self-stretch cursor-pointer items-start justify-start gap-4 px-3.5 py-3 hover:bg-indigo-50 ${index === 0 ? "rounded-t-[10px]" : ""} ${index === perf.setlist.length - 1 ? "rounded-b-[10px]" : ""}`}
+                          >
+                            <div className="text-sm font-normal leading-5">
+                              {song.title}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* 응원 메시지 입력 영역 */}
+              <div className="flex self-stretch flex-col items-start justify-start gap-2">
+                <div className="self-stretch text-body-1">응원 메시지</div>
+                <div className="inline-flex self-stretch items-start justify-start gap-2 rounded-lg bg-gray-100 px-5 py-3.5">
+                  <textarea
+                    className="flex-1 bg-transparent text-body-2 placeholder:text-gray-400 focus:outline-none resize-none"
+                    placeholder="공연자에게 따뜻한 응원 메시지를 남겨주세요 (욕설·비방 등 부적절한 내용은 삭제 조치될 수 있습니다)"
+                    rows={3}
+                  />
                 </div>
               </div>
             </div>
+          )}
 
-            {/* 응원 메시지 입력 영역 */}
-            <div className="flex self-stretch flex-col items-start justify-start gap-2">
-              <div className="self-stretch text-body-1">응원 메시지</div>
-              <div className="inline-flex self-stretch items-start justify-start gap-2 rounded-lg bg-gray-100 px-5 py-3.5">
-                <textarea
-                  className="flex-1 bg-transparent text-body-2 placeholder:text-gray-400 focus:outline-none resize-none"
-                  placeholder="공연자에게 따뜻한 응원 메시지를 남겨주세요 (욕설·비방 등 부적절한 내용은 삭제 조치될 수 있습니다)"
-                  rows={3}
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* 전송 버튼 */}
+          {/* 전송 버튼 (클릭 시 응원 섹션을 열거나, 열려있다면 전송 동작 실행) */}
           <button
-            onClick={handleSend}
+            onClick={() => {
+              if (!isReviewOpen) {
+                setIsReviewOpen(true);
+              } else {
+                handleSend();
+              }
+            }}
             className="inline-flex h-14 w-96 items-center justify-center gap-2 rounded-2xl bg-indigo-500 px-5 py-2 transition-colors hover:bg-indigo-600"
           >
             <div className="text-center text-heading-3 text-white">
