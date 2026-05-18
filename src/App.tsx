@@ -3,9 +3,11 @@ import "./index.css";
 import Home from "./pages/HomePage";
 import BoothList from "./pages/booth/BoothList";
 import AvailableBoothListPage from "./pages/booth/reservation/AvailableBoothList";
+import { InformationMainPage } from "./pages/more/InformationMainPage";
+import PerformanceListPage from "./pages/performance/PerformanceListPage";
+import PerformanceDetailPage from "./pages/performance/PerformanceDetailPage";
 import LostFound from "./pages/information/LostFound";
 import BarrierFree from "./pages/information/BarrierFree";
-import { InformationMainPage } from './pages/more/InformationMainPage';
 import BoothDetailPage from "./pages/booth/BoothDetailPage";
 import ReservationFormPage from "./pages/booth/reservation/ReservationFormPage";
 import ReservationCompletePage from "./pages/booth/reservation/ReservationCompletePage";
@@ -22,12 +24,20 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/booth" element={<BoothList />} />
             <Route path="/reservation" element={<AvailableBoothListPage />} />
-            <Route path="/booths/:boothNumber" element={<BoothDetailPage />} />
+            <Route
+              path="/booths/:boothNumber"
+              element={<BoothDetailPage />}
+            />
+            <Route path="/reservation/:boothNumber" element={<ReservationFormPage />} />
+            <Route path="/reservation-complete" element={<ReservationCompletePage />} />
             <Route path="/more/lost-found" element={<LostFound />} />
             <Route path="/more/barrier-free" element={<BarrierFree />} />
             <Route path="/more" element={<InformationMainPage />} />
-            <Route path="/reservation/:boothNumber" element={<ReservationFormPage />} />
-            <Route path="/reservation-complete" element={<ReservationCompletePage />} />
+            <Route path="/performance" element={<PerformanceListPage />} />
+            <Route
+              path="/performance/:id"
+              element={<PerformanceDetailPage />}
+            />
           </Routes>
         </BrowserRouter>
       </div>
