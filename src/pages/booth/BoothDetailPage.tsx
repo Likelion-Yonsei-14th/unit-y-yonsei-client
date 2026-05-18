@@ -1,4 +1,5 @@
 import MenuCard from "../../components/booth/MenuCard";
+import WaitingStatusCard from "../../components/booth/reservation/WaitingStatusCard";
 import BottomNav from "../../components/common/BottomNav";
 import TopBar from "../../components/common/TopBar";
 
@@ -42,7 +43,7 @@ function BoothDetailPage() {
     <div className="flex h-screen flex-col bg-white">
       <TopBar title="부스 상세" showBackButton />
 
-      <main className="flex-1 overflow-y-auto pb-[12px]">
+      <main className="flex-1 overflow-y-auto no-scrollbar pb-[12px]">
         <section>
           <div className="h-[260px] overflow-hidden bg-[#EDEEF0]">
             <img
@@ -71,7 +72,7 @@ function BoothDetailPage() {
               ◷ 12:00 - 21:00
             </p>
 
-            <p className="mt-[16px] text-body-2">
+            <p className="mt-[12px] text-body-2">
               {booth.description}
             </p>
 
@@ -86,7 +87,7 @@ function BoothDetailPage() {
         <div className="h-[12px] bg-[#EDEEF0]" />
 
         <section className="px-[16px] py-[20px]">
-          <div className="flex flex-col gap-[14px]">
+          <div className="flex flex-col gap-[12px]">
             {menus.map((menu) => (
               <MenuCard
                 key={menu.id}
@@ -101,12 +102,12 @@ function BoothDetailPage() {
 
         <div className="h-[12px] bg-[#EDEEF0]" />
 
-        <section className="px-[16px] py-[20px]">
-          {/* <WaitingStatusCard count={booth.waitingTeamCount} /> */}
+        <section className="px-[16px] mt-[20px] mb-[20px]">
+          <WaitingStatusCard count={booth.waitingTeamCount} />
 
           <button
             type="button"
-            className="mt-[12px] h-[58px] w-full rounded-[18px] bg-[#C9CDD4] text-body-1 font-bold text-white"
+            className="mt-[6px] h-[58px] w-full rounded-[18px] bg-[#C9CDD4] text-body-1 font-bold text-white"
           >
             입장 완료
           </button>
