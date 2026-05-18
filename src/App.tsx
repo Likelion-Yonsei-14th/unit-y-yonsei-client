@@ -6,6 +6,8 @@ import AvailableBoothListPage from "./pages/booth/reservation/AvailableBoothList
 import BoothReservationDetailPage from "./pages/booth/reservation/BoothReservationDetailPage";
 import { InformationMainPage } from './pages/more/InformationMainPage';
 import ReviewPage from './pages/more/ReviewPage';
+import ReviewSubmitPage from './pages/more/ReviewSubmitPage';
+import ReviewDonePage from './pages/more/ReviewDonePage';
 import MakerPage from './pages/more/MakerPage';
 import LostFound from "./pages/information/LostFound";
 import BarrierFree from "./pages/information/BarrierFree";
@@ -27,6 +29,8 @@ function App() {
             <Route path="/booths/:boothNumber" element={<BoothReservationDetailPage />} />
             <Route path="/more" element={<InformationMainPage />} />
             <Route path="/more/review" element={<ReviewPage />} />
+            <Route path="/more/review-submit" element={<ReviewSubmitPage />} />
+            <Route path="/more/review-done" element={<ReviewDonePage />} />
             <Route path="/more/makers" element={<MakerPage />} />
             <Route path="/more/lost-found" element={<LostFound />} />
             <Route path="/more/barrier-free" element={<BarrierFree />} />
