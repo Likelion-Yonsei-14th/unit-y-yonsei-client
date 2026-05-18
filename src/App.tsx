@@ -8,10 +8,7 @@ import PerformanceListPage from "./pages/performance/PerformanceListPage";
 import PerformanceDetailPage from "./pages/performance/PerformanceDetailPage";
 import LostFound from "./pages/information/LostFound";
 import BarrierFree from "./pages/information/BarrierFree";
-import BoothReservationDetailPage from "./pages/booth/reservation/BoothReservationDetailPage";
-import ReservationFormPage from "./pages/booth/reservation/ReservationFormPage";
-import ReservationCompletePage from "./pages/booth/reservation/ReservationCompletePage";
-
+import BoothDetailPage from "./pages/booth/BoothDetailPage";
 
 
 function App() {
@@ -26,7 +23,7 @@ function App() {
             <Route path="/reservation" element={<AvailableBoothListPage />} />
             <Route
               path="/booths/:boothNumber"
-              element={<BoothReservationDetailPage />}
+              element={<BoothDetailPage />}
             />
             <Route path="/more/lost-found" element={<LostFound />} />
             <Route path="/more/barrier-free" element={<BarrierFree />} />
