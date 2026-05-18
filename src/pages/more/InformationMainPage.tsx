@@ -24,6 +24,8 @@ export const InformationMainPage = () => {
   const navigate = useNavigate();
 
   const serviceRoutes: Record<number, string> = {
+    1: '/more/lost-found',
+    2: '/more/barrier-free',
     3: '/more/review',
     4: '/more/makers',
   };

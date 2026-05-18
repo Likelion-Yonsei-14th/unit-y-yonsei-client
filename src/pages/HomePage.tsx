@@ -24,7 +24,7 @@ const booth = [
     title: "호프 한잔",
     waiting: "대기 2팀",
     department: "사회학과",
-    boothNumber: "B-07",
+    boothNumber: "B-09",
     tags: ["파전", "막걸리"],
     rank: 3,
   },
@@ -81,6 +81,7 @@ function Home() {
                 <div className="flex flex-col gap-[0.75rem] mb-[2.25rem]">
                     {booth.map((booth) => (
                         <BoothCard
+
                             key={booth.boothNumber}
                             title={booth.title}
                             waiting={booth.waiting}
