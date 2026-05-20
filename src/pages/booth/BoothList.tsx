@@ -123,19 +123,39 @@ function BoothList() {
           ))}
         </div>
 
-        <div className="px-5 pb-6 flex flex-col gap-2">
-          {filteredBooths.map((booth) => (
-            <BoothCard
-              key={booth.id}
-              title={booth.name}
-              waiting={`대기 ${booth.waitingCount}팀`}
-              department={booth.organization}
-              boothNumber={`${booth.location}`}
-              tags={booth.isFood ? ["음식"] : ["부스"]}
-              location={booth.sector}
-              onClick={() => navigate(`/booths/${booth.id}`)}
-            />
-          ))}
+        <div className="px-5 pb-6">
+          {filteredBooths.length === 0 ? (
+            <div className="flex flex-col items-center pt-10">
+              <img
+                src="/character/no-result-character.svg"
+                alt=""
+                className="w-[148px] h-[150px]"
+              />
+
+              <p className="mt-4 text-heading-2 text-[#4A5568]">
+                검색 결과가 없어요
+              </p>
+
+              <p className="mt-1 text-caption text-[#9CA3AF]">
+                다른 키워드로 검색해보세요
+              </p>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-2">
+              {filteredBooths.map((booth) => (
+                <BoothCard
+                  key={booth.id}
+                  title={booth.name}
+                  waiting={`대기 ${booth.waitingCount}팀`}
+                  department={booth.organization}
+                  boothNumber={`${booth.location}`}
+                  tags={booth.isFood ? ["음식"] : ["부스"]}
+                  location={booth.sector}
+                  onClick={() => navigate(`/booths/${booth.id}`)}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

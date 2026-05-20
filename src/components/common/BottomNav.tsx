@@ -1,4 +1,5 @@
 import { Link, matchPath, useLocation } from "react-router-dom";
+import FloatingChatMenu from "../FloatingChatMenu";
 
 function BottomNav() {
   const location = useLocation();
@@ -52,6 +53,9 @@ function BottomNav() {
   ] as const;
 
   return (
+    <>
+    <FloatingChatMenu />
+
     <nav className="h-[5.1875rem] border-t border-[#EDEEF0] bg-white flex items-center justify-around">
       {navItems.map((item) => {
         const isActive = item.activePaths.some((activePath) => matchPath(activePath, location.pathname));
@@ -79,6 +83,7 @@ function BottomNav() {
         );
       })}
     </nav>
+    </>
   );
 }
 
