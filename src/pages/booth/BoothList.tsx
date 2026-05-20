@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TopBar from "../../components/common/TopBar";
 import TabBar from "../../components/common/TabBar";
 import SearchBar from "../../components/common/SearchBar";
@@ -7,11 +7,14 @@ import BoothCard from "../../components/booth/BoothCard";
 import BottomNav from "../../components/common/BottomNav";
 import { useNavigate } from "react-router-dom";
 import MapAccordion from "../../components/common/MapAccordion";
+import { getBooths } from "../../apis/booth";
+import type { BoothResponse } from "../../apis/types/booth";
+
 
 const DATE_TABS = [
-  { id: "527", label: "5/27 송도" },
-  { id: "528", label: "5/28 신촌" },
-  { id: "529", label: "5/29 신촌" },
+  { id: "2", label: "5/27 송도" },
+  { id: "3", label: "5/28 신촌" },
+  { id: "4", label: "5/29 신촌" },
 ];
 
 const FILTER_CHIPS = [
@@ -21,45 +24,25 @@ const FILTER_CHIPS = [
 ];
 
 const LOCATION_CHIPS: Record<string, { id: string; label: string }[]> = {
-  "527": [],
-  "528": [
+  "2": [],
+  "3": [
     { id: "all", label: "전체" },
-    { id: "baekyang", label: "백양로" },
-    { id: "hangeultap", label: "한글탑" },
+    { id: "백양로", label: "백양로" },
+    { id: "한글탑", label: "한글탑" },
   ],
-  "529": [
+  "4": [
     { id: "all", label: "전체" },
-    { id: "baekyang", label: "백양로" },
-    { id: "hangeultap", label: "한글탑" },
+    { id: "백양로", label: "백양로" },
+    { id: "한글탑", label: "한글탑" },
   ],
 };
 
-const MOCK_BOOTHS = [
-  {
-    id: 1,
-    title: "호프 한잔",
-    waiting: "대기 2팀",
-    department: "사회학과",
-    boothNumber: "B-07",
-    tags: ["파전", "막걸리"],
-    location: "백양로",
-  },
-  {
-    id: 2,
-    title: "호프 한잔",
-    waiting: "대기 2팀",
-    department: "사회학과",
-    boothNumber: "B-07",
-    tags: ["파전", "막걸리"],
-    location: "백양로",
-  },
-];
-
 function BoothList() {
-  const [activeTab, setActiveTab] = useState("527");
+  const [activeTab, setActiveTab] = useState("2");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState("all");
   const [activeLocation, setActiveLocation] = useState("all");
+  const [booths, setBooths] = useState<BoothResponse[]>([]);
 
   const navigate = useNavigate();
 
@@ -69,7 +52,40 @@ function BoothList() {
     setActiveFilter("all");
   }
 
+  useEffect(() => {
+    const fetchBooths = async () => {
+      try {
+
+        const sector =
+          activeTab === "2"
+            ? "송도"
+            : activeLocation === "all"
+              ? undefined
+              : activeLocation;
+              
+        const data = await getBooths({
+          date: Number(activeTab),
+          sector,
+          isFood:
+            activeFilter === "all"
+              ? undefined
+              : activeFilter === "foodtruck",
+        });
+
+        setBooths(data);
+      } catch (error) {
+        console.error("부스 목록 조회 실패", error);
+      }
+    };
+
+    fetchBooths();
+  }, [activeTab, activeLocation, activeFilter]);
+
   const locationChips = LOCATION_CHIPS[activeTab] ?? [];
+
+  const filteredBooths = booths.filter((booth) =>
+    booth.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="flex flex-col h-screen bg-white">
@@ -107,19 +123,39 @@ function BoothList() {
           ))}
         </div>
 
-        <div className="px-5 pb-6 flex flex-col gap-2">
-          {MOCK_BOOTHS.map((booth) => (
-            <BoothCard
-              key={booth.id}
-              title={booth.title}
-              waiting={booth.waiting}
-              department={booth.department}
-              boothNumber={booth.boothNumber}
-              tags={booth.tags}
-              location={booth.location}
-              onClick={() => navigate(`/booths/${booth.boothNumber}`)}
-            />
-          ))}
+        <div className="px-5 pb-6">
+          {filteredBooths.length === 0 ? (
+            <div className="flex flex-col items-center pt-10">
+              <img
+                src="/character/no-result-character.svg"
+                alt=""
+                className="w-[148px] h-[150px]"
+              />
+
+              <p className="mt-4 text-heading-2 text-[#4A5568]">
+                검색 결과가 없어요
+              </p>
+
+              <p className="mt-1 text-caption text-[#9CA3AF]">
+                다른 키워드로 검색해보세요
+              </p>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-2">
+              {filteredBooths.map((booth) => (
+                <BoothCard
+                  key={booth.id}
+                  title={booth.name}
+                  waiting={`대기 ${booth.waitingCount}팀`}
+                  department={booth.organization}
+                  boothNumber={`${booth.location}`}
+                  tags={booth.isFood ? ["음식"] : ["부스"]}
+                  location={booth.sector}
+                  onClick={() => navigate(`/booths/${booth.id}`)}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

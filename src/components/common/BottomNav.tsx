@@ -1,4 +1,5 @@
 import { Link, matchPath, useLocation } from "react-router-dom";
+import FloatingChatMenu from "../FloatingChatMenu";
 
 function BottomNav() {
   const location = useLocation();
@@ -17,7 +18,7 @@ function BottomNav() {
       key: "booth",
       label: "부스",
       path: "/booth",
-      activePaths: ["/booth","/booth/:boothId"],
+      activePaths: ["/booth","/booths/:boothId"],
       activeIcon: "/bottomNav/booth-active.svg",
       inactiveIcon: "/bottomNav/booth-inactive.svg",
       size: "w-[1.5rem] h-[1.5rem]",
@@ -44,7 +45,7 @@ function BottomNav() {
       key: "more",
       label: "더보기",
       path: "/more",
-      activePaths: ["/more"],
+      activePaths: ["/more", "/more/barrier-free", "/more/lost-found", "/review", "/makers"],
       activeIcon: "/bottomNav/more-active.svg",
       inactiveIcon: "/bottomNav/more-inactive.svg",
       size: "w-[1.5rem] h-[1.5rem]",
@@ -52,6 +53,9 @@ function BottomNav() {
   ] as const;
 
   return (
+    <>
+    <FloatingChatMenu />
+
     <nav className="h-[5.1875rem] border-t border-[#EDEEF0] bg-white flex items-center justify-around">
       {navItems.map((item) => {
         const isActive = item.activePaths.some((activePath) => matchPath(activePath, location.pathname));
@@ -79,6 +83,7 @@ function BottomNav() {
         );
       })}
     </nav>
+    </>
   );
 }
 
