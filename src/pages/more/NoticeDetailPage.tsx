@@ -1,11 +1,17 @@
+import { useState } from 'react';
 import TopBar from '../../components/common/TopBar';
 import BottomNav from '../../components/common/BottomNav';
+
+const bannerSlides = [
+  '/notice/notice1.png',
+  '/notice/notice2.png',
+  '/notice/notice3.png',
+];
 
 // TODO: API 연동 후 useParams로 id 받아서 실제 데이터 fetch
 const mockNotice = {
   title: '동문 광장 공연 참가 신청 안내',
   createdAt: '2026.05.01',
-  imageUrl: '',
   content: `[개교 제141주년 무악대동제: 너와 내가 하나되는 연세의 축제, <UNIT:Y> 개최 공지]
 
 안녕하세요, 개교 제141주년 무악대동제 <UNIT:Y> 기획단입니다.
@@ -32,6 +38,24 @@ UNIT:Y,
 };
 
 export default function NoticeDetailPage() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        setCurrentIndex((prev) => Math.min(prev + 1, bannerSlides.length - 1));
+      } else {
+        setCurrentIndex((prev) => Math.max(prev - 1, 0));
+      }
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <TopBar title="공지사항" showBackButton />
@@ -44,17 +68,43 @@ export default function NoticeDetailPage() {
           <span className="text-caption text-[#ACB1BA]">{mockNotice.createdAt}</span>
         </section>
 
-        {/* 배너 이미지 */}
+        {/* 배너 슬라이더 */}
         <section className="h-[488px] pt-[24px] bg-white">
-          <div className="w-full h-full bg-[#EDEEF0] overflow-hidden relative">
-            {mockNotice.imageUrl && (
-              <img src={mockNotice.imageUrl} alt="공지 이미지" className="w-full h-full object-cover" />
-            )}
+          <div
+            className="w-full h-full overflow-hidden relative bg-[#EDEEF0]"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            {/* 슬라이드 트랙 */}
+            <div
+              className="flex h-full transition-transform duration-300 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {bannerSlides.map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  alt={`공지 이미지 ${i + 1}`}
+                  className="w-full h-full object-cover flex-shrink-0"
+                />
+              ))}
+            </div>
+
             {/* 좌측 하단 dot indicator */}
             <div className="absolute bottom-[16px] left-[20px] flex gap-[6px] items-center">
-              <span className="w-[6px] h-[6px] rounded-full bg-white" />
-              <span className="w-[6px] h-[6px] rounded-full bg-white opacity-50" />
-              <span className="w-[6px] h-[6px] rounded-full bg-white opacity-50" />
+              {bannerSlides.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  aria-label={`슬라이드 ${i + 1}`}
+                  onClick={() => setCurrentIndex(i)}
+                  className={`rounded-full transition-all duration-300 ${
+                    i === currentIndex
+                      ? 'w-[16px] h-[6px] bg-white'
+                      : 'w-[6px] h-[6px] bg-white opacity-50'
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </section>
